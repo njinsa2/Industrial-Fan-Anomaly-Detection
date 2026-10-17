@@ -1,0 +1,132 @@
+===========================================
+trial 1 - mel-spectrogram summary statistics
+
+Model hyperparameters dictionary: {'RandomForestClassifier': {'pca__n_components': 0.9157260029784747, 'estimator__max_depth': 28, 'estimator__min_samples_split': 11, 'estimator__min_samples_leaf': 12, 'estimator__max_features': 1.0}, 'HistGradientBoostingClassifier': {'pca__n_components': 0.9147714872407682, 'estimator__max_depth': 4, 'estimator__learning_rate': 0.007137188581599077, 'estimator__l2_regularization': 0.06067657071371191, 'estimator__min_samples_leaf': 3, 'estimator__max_leaf_nodes': 61}}
+
+Model cross-validation scores: {'RandomForestClassifier': 0.4596841786573464, 'HistGradientBoostingClassifier': 0.4733631023741376}
+
+Saved model to: models\RandomForestClassifier.pkl
+Saved model to: models\HistGradientBoostingClassifier.pkl
+RandomForestClassifier: 
+               precision    recall  f1-score   support
+
+           0       0.85      0.74      0.79      1015
+           1       0.47      0.64      0.54       361
+
+    accuracy                           0.71      1376
+   macro avg       0.66      0.69      0.67      1376
+weighted avg       0.75      0.71      0.73      1376
+ 
+ Generalization Gap = -0.2073336752417863 
+
+
+
+HistGradientBoostingClassifier: 
+               precision    recall  f1-score   support
+
+           0       0.87      0.75      0.81      1015
+           1       0.49      0.67      0.57       361
+
+    accuracy                           0.73      1376
+   macro avg       0.68      0.71      0.69      1376
+weighted avg       0.77      0.73      0.74      1376
+ 
+ Generalization Gap = -0.21383235104815057 
+
+===========================================================
+trial 2 - 12.10.2026.
+
+Model hyperparameters dictionary: {'SVC': {'estimator__kernel': 'rbf', 'estimator__C': 4.902828977239645, 'estimator__gamma': 9.217280113982208e-06}, 'MLPClassifier': {'estimator__hidden_layer_sizes': (1024,), 'estimator__alpha': 0.00020604044007908965, 'estimator__learning_rate_init': 0.02707281707964283}, 'RandomForestClassifier': {'estimator__max_depth': 8, 'estimator__min_samples_split': 22, 'estimator__min_samples_leaf': 5, 'estimator__max_features': 0.2}, 'HistGradientBoostingClassifier': {'estimator__max_depth': 8, 'estimator__learning_rate': 0.097050032715496, 'estimator__l2_regularization': 0.04682547056895639, 'estimator__min_samples_leaf': 15, 'estimator__max_leaf_nodes': 38}}
+
+Model cross-validation scores: {'SVC': 0.6813409673232607, 'MLPClassifier': 0.6770459738061462, 'RandomForestClassifier': 0.44684152224866464, 'HistGradientBoostingClassifier': 0.4376590294910545}
+
+Saved model to: models\SVC.pkl
+Saved model to: models\MLPClassifier.pkl
+Saved model to: models\RandomForestClassifier.pkl
+Saved model to: models\HistGradientBoostingClassifier.pkl
+=== SVC ===
+              precision    recall  f1-score   support
+
+           0       0.89      0.99      0.94       814
+           1       0.95      0.67      0.79       293
+
+    accuracy                           0.90      1107
+   macro avg       0.92      0.83      0.86      1107
+weighted avg       0.91      0.90      0.90      1107
+
+Generalization Gap: -0.18174
+--------------------------------------------------
+=== MLPClassifier ===
+              precision    recall  f1-score   support
+
+           0       0.97      1.00      0.98       814
+           1       0.99      0.92      0.95       293
+
+    accuracy                           0.98      1107
+   macro avg       0.98      0.96      0.97      1107
+weighted avg       0.98      0.98      0.98      1107
+
+Generalization Gap: -0.29210
+--------------------------------------------------
+=== RandomForestClassifier ===
+              precision    recall  f1-score   support
+
+           0       0.98      1.00      0.99       814
+           1       1.00      0.96      0.98       293
+
+    accuracy                           0.99      1107
+   macro avg       0.99      0.98      0.98      1107
+weighted avg       0.99      0.99      0.99      1107
+
+Generalization Gap: -0.53670
+--------------------------------------------------
+=== HistGradientBoostingClassifier ===
+              precision    recall  f1-score   support
+
+           0       0.99      1.00      0.99       814
+           1       1.00      0.96      0.98       293
+
+    accuracy                           0.99      1107
+   macro avg       0.99      0.98      0.99      1107
+weighted avg       0.99      0.99      0.99      1107
+
+Generalization Gap: -0.54823
+--------------------------------------------------
+
+=====================================================================================
+                 MODEL EVALUATION RESULTS ACROSS ALL SNR CONDITIONS                  
+=====================================================================================
+
+>>> MODEL: HistGradientBoostingClassifier
+-------------------------------------------------------------------------------------
+SNR      | Accuracy   | Macro Prec   | Macro Rec    | Macro F1  
+-------------------------------------------------------------------------------------
+0dB      | 0.9548     | 0.9680       | 0.9169       | 0.9388    
+6dB      | 0.9675     | 0.9548       | 0.9626       | 0.9586    
+-6dB     | 0.4354     | 0.6486       | 0.6117       | 0.4311    
+
+>>> MODEL: MLPClassifier
+-------------------------------------------------------------------------------------
+SNR      | Accuracy   | Macro Prec   | Macro Rec    | Macro F1  
+-------------------------------------------------------------------------------------
+0dB      | 0.9458     | 0.9579       | 0.9031       | 0.9262    
+6dB      | 0.9621     | 0.9755       | 0.9283       | 0.9488    
+-6dB     | 0.7055     | 0.7003       | 0.7572       | 0.6864    
+
+>>> MODEL: RandomForestClassifier
+-------------------------------------------------------------------------------------
+SNR      | Accuracy   | Macro Prec   | Macro Rec    | Macro F1  
+-------------------------------------------------------------------------------------
+0dB      | 0.9386     | 0.9615       | 0.8840       | 0.9143    
+6dB      | 0.8726     | 0.8332       | 0.8959       | 0.8521    
+-6dB     | 0.3948     | 0.6285       | 0.5808       | 0.3856    
+
+>>> MODEL: SVC
+-------------------------------------------------------------------------------------
+SNR      | Accuracy   | Macro Prec   | Macro Rec    | Macro F1  
+-------------------------------------------------------------------------------------
+0dB      | 0.9584     | 0.9635       | 0.9291       | 0.9446    
+6dB      | 0.9648     | 0.9743       | 0.9356       | 0.9529    
+-6dB     | 0.6188     | 0.6791       | 0.7189       | 0.6127    
+
+=====================================================================================

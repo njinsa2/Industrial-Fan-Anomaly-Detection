@@ -1,0 +1,29 @@
+# Virtual Environments
+venv/
+.venv/
+env/
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# Large ML Artifacts & Data
+*.pkl
+*.h5
+*.pth
+*.onnx
+data_csv/
+-6_dB_fan/
+0_dB_fan/
+6_dB_fan/
+
+# Environment & Credentials
+.env
+.DS_Store
+
+# Miscellaneous 
+todo.txt
+readme.txt
+leak_check.py
+evaluate_all.py
+pipeline v2.py
