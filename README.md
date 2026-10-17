@@ -148,3 +148,68 @@ Figure 1 lets us assume that models did infact learn the acoustic behavioural pa
 ├── pipeline.py             # Optuna optimization, training, and testing execution
 ├── plot_results.py         # Visualization script for confusion matrices and metrics
 └── README.md               # Project documentation
+
+```markdown
+## Installation & Setup
+
+### Prerequisites & Dependencies
+This project requires **Python 3.10+**. Clone the repository and install the required dependencies:
+
+```bash
+git clone [https://github.com/njinsa2/Industrial-Fan-Anomaly-Detection.git](https://github.com/njinsa2/Industrial-Fan-Anomaly-Detection.git)
+cd Industrial-Fan-Anomaly-Detection
+pip install -r requirements.txt
+
+```
+
+### Dataset Preparation
+
+1. Download the industrial fan subset of the **MIMII Dataset** from [Zenodo](https://zenodo.org/records/3384388).
+2. Extract the archive folders into your local project root directory:
+* `./0_dB_fan/`
+* `./6_dB_fan/`
+* `./-6_dB_fan/`
+
+
+
+*(Note: Raw audio directories are listed in `.gitignore` to prevent tracking large multi-gigabyte audio files on GitHub.)*
+
+---
+
+## How to Run
+
+Run the end-to-end processing and modeling pipeline sequentially:
+
+### 1. Extract Features & Create Leak-Free CSV Partitions
+
+Extracts Mel-spectrogram statistics and bioacoustic descriptors, applies base-filename chronological block splitting with a 20-file (~200 s) purge buffer, and exports leak-free CSV partitions to `data_csv/`:
+
+```bash
+python raw_data_to_csv.py
+
+```
+
+### 2. Hyperparameter Optimization & Model Evaluation
+
+Runs Bayesian hyperparameter tuning via Optuna on `train_0dB.csv` using custom purged cross-validation, fits final estimator pipelines (`SVC`, `MLPClassifier`, `RandomForestClassifier`, `HistGradientBoostingClassifier`), evaluates them across all SNR test sets (0 dB, 6 dB, -6 dB), and exports fitted pipelines to `models/`:
+
+```bash
+python pipeline.py
+
+```
+
+### 3. Generate Evaluation Plots & Charts
+
+Generates and exports confusion matrices, ROC curves, and performance metric visualizers into the `results/` directory:
+
+```bash
+python plot_results.py
+
+```
+
+---
+
+## References & Acknowledgements
+
+* **Academic Supervision:** Developed under the supervision of **Prof. Dr. Amira Šerifović-Trbalić**, Department of Automation and Robotics, Faculty of Electrical Engineering, University of Tuzla.
+* **Dataset Citation:** Purohit, H., Tanabe, R., Ichige, T., Endo, T., Nikaido, Y., Suefusa, K., & Kawaguchi, Y. (2019). *MIMII Dataset: Sound Dataset for Malfunctioning Industrial Machine Investigation and Inspection*. Proceedings of the Detection and Classification of Acoustic Scenes and Events 2019 Workshop (DCASE 2019). [Zenodo Repository](https://zenodo.org/records/3384388) | [Paper Link](https://www.google.com/search?q=https://dcase.community/documents/workshop2019/proceedings/DCASE2019Workshop_Purohit_21.pdf)
